@@ -34,8 +34,10 @@ export default function Home() {
           <div className='flex items-center justify-start'>
             <HelpModal />
           </div>
-          <h1 className='font-semibold text-[40px]'>WORDLE</h1>
-          <div className='flex items-center justify-end gap-3'>
+          <div className='flex items-center justify-start'>
+            <h1 className='font-semibold text-[20px] sm:text-[40px]'>WORDLE</h1>
+          </div>
+          <div className='flex items-center justify-end gap-1 sm:gap-3'>
             <StatsModal />
             <ThemeSwitch />
           </div>

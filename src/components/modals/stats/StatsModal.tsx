@@ -29,8 +29,8 @@ export default function StatsModal() {
     <>
       <StatsButton onClick={handleOpen} />
       {open && <Modal>
-        <div className='flex flex-col gap-5 p-4'>
-          <h2 className='text-center text-[35px] font-bold'>Estadísticas</h2>
+        <div className='flex flex-col gap-5 p-1 md:p-4'>
+          <h2 className='text-center text-[20px] md:text-[35px] font-bold'>Estadísticas</h2>
           <div className='flex justify-around pt-2 pb-8'>
             <div className='flex flex-col items-center gap-1 px-2'>
               <span className='text-[35px] font-bold'>{plays}</span>
@@ -49,7 +49,7 @@ export default function StatsModal() {
             <span className='text-[19px] font-bold'>{convertSecondsToMinutes(seconds)}</span>
           </div>
           <div className='grid pt-8 place-content-center'>
-            <button onClick={handleClose} className='px-20 py-1 text-[28px] font-bold text-[white] bg-my-green rounded-[5px] w-[260px]'>
+            <button onClick={handleClose} className='px-2 sm:px-20 py-1 text-[28px] font-bold text-[white] bg-my-green rounded-[5px] w-[160px] sm:w-[260px]'>
               Aceptar
             </button>
           </div>

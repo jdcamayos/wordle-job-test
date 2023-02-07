@@ -1,4 +1,4 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
+const { fontFamily, screens } = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -6,6 +6,10 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'xs': '320px',
+      ...screens
+    },
     colors: {
       'my-green': '#6AAA64',
       'my-gold': '#CEB02C',

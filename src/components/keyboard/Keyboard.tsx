@@ -72,7 +72,7 @@ export default function Keyboard() {
     <>
       {/* <p>{input}</p> */}
       <section>
-        <div className='h-[238px] w-[638px] rounded-[15px] px-[20px] flex flex-col gap-[9px] bg-[#F3F3F3] dark:bg-dark-bg-alt py-[33.5px]'>
+        <div className='h-full w-full lg:h-max-[238px] lg:w-max-[638px] rounded-[15px] px-[5px] sm:px-[20px] flex flex-col gap-[9px] bg-[#F3F3F3] dark:bg-dark-bg-alt py-[15px] xl:py-[33.5px]'>
           {KEYBOARD_KEYS.map((row, i) => (
             <KeyboardRow key={`row-${i}`} rowIndex={i}>
               {row.map(key => (
