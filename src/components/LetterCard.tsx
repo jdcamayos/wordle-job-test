@@ -29,7 +29,7 @@ export default function LetterCard(props: Props) {
   )
 
   if (color === 'line') return (
-    <div className={`h-[76px] w-[76px] bg-[white] dark:bg-dark-bg-alt rounded-[5px] text-[35px] font-extrabold grid place-content-center text-[#FFF] border border-[black] dark:border-[#939B9F]`}>
+    <div className={`h-[76px] w-[76px] bg-[white] dark:bg-dark-bg-alt rounded-[5px] text-[35px] font-extrabold grid place-content-center text-[#000] dark:text-[#FFF] border border-[black] dark:border-[#939B9F]`}>
       {props.children}
     </div>
   )
