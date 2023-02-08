@@ -43,7 +43,7 @@ export default function Home() {
           </div>
         </header>
         <section className='grid place-content-center'>
-          <div className='grid grid-cols-5 grid-rows-5 gap-[11px]'>
+          <div className='grid grid-cols-5 grid-rows-5 gap-[2px] sm:gap-[5px] lg:gap-[11px]'>
             {boardToRender.map((card, index) => !!card ? (
               <LetterCard key={`card-${index}`} color={card.color}>
                 {card.value}
