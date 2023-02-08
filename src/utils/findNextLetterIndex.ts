@@ -1,14 +1,11 @@
 import { BoardCard } from "@/types";
 
-export const findNextLetterIndex = (arr: Array<Array<BoardCard>>) => {
-  for (let rowIndex = 0; rowIndex < arr.length; rowIndex++) {
-    const row = arr[rowIndex]
-      for (let colIndex =0; colIndex < row.length; colIndex++) {
-        const colValue = row[colIndex]
-          if (colValue === null) {
-              return [rowIndex, colIndex];
-          }
-      }
-  }
-  return [-1, -1];
+export const findNextLetterIndex = (arrays: Array<Array<BoardCard>>) => {
+  return arrays.reduce((acc, array, i) => {
+    const nullIndex = array.indexOf(null);
+    if (acc[0] === -1 && acc[1] === -1 && nullIndex !== -1) {
+      acc = [i, nullIndex]
+    }
+    return acc
+  }, [-1, -1]);
 };

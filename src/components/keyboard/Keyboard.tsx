@@ -23,7 +23,6 @@ export default function Keyboard() {
   const [activeKey, setActiveKey] = React.useState("");
   const { addLetter, gameStatus, board } = useGame()
   const [keys, setKeys] = React.useState<Array<Array<KeyType>>>([])
-  const [keysPressed, setKeysPressed] = React.useState([])
 
   React.useEffect(() => {
     if (!keys.length) {
@@ -53,7 +52,6 @@ export default function Keyboard() {
         return { value, status: 'none' }
       }
     }))
-    console.log({ keysPressed, keysGreen, keysGold, keysGrey, keys })
     setKeys(keys)
   }, [board])
 
@@ -64,6 +62,8 @@ export default function Keyboard() {
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
+    event.stopPropagation()
+    console.log('HHHHH')
     handleChangeInput(event.key)
     handleEffect(event.key);
   };
@@ -75,7 +75,6 @@ export default function Keyboard() {
 
   const handleChangeInput = (keyInput: string) => {
     // Validate if the key is in the KEYBOARD_KEYS
-    console.log({ keyInput })
     if (gameStatus !== 'playing') return
     const keyToValidate = keyInput.toLocaleUpperCase()
 
@@ -97,10 +96,10 @@ export default function Keyboard() {
   }
 
   // React.useEffect(() => {
-  //   window.addEventListener("keydown", handleKeyDown);
+  //   window.addEventListener("keydown", handleKeyDown, false);
 
   //   return () => {
-  //     window.removeEventListener("keydown", handleKeyDown);
+  //     window.removeEventListener("keydown", handleKeyDown, false);
   //   };
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);

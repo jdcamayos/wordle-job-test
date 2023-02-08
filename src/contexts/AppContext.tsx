@@ -34,6 +34,7 @@ const INITIAL_BOARD: Array<Array<BoardCard | null>> = [
 const TIME_TO_RESET_IN_SECONDS = 5 * 60
 
 export default function AppContextProvider(props: RFC) {
+  // console.log('Render context')
   // Theme
   const [darkMode, setDarkMode] = React.useState(false)
   // Words
@@ -48,7 +49,7 @@ export default function AppContextProvider(props: RFC) {
   const [wordSelected, setWordSelected] = React.useState<string | null>(null)
   const [nextWord, setNextWord] = React.useState<string | null>(null)
   // Board
-  const [board, setBoard] = React.useState<Array<Array<BoardCard | null>>>(INITIAL_BOARD)
+  const [board, setBoard] = React.useState<Array<Array<BoardCard>>>(INITIAL_BOARD)
   // Location
   const [activeRow, setActiveRow] = React.useState(0)
   // Counter
@@ -127,13 +128,21 @@ export default function AppContextProvider(props: RFC) {
   const addLetter = (letter: string) => {
     if (letter.length > 1) return
     const [rowIndex, colIndex] = findNextLetterIndex(board)
+    console.log({ rowIndex, colIndex })
+    const newBoard: Array<Array<BoardCard>> = board.map((row, rowI) => {
+      return row.map((value, colI) => {
+        if (rowI === rowIndex && colI === colIndex) {
+          return { value: letter, color: 'grey' }
+        } else {
+          return value
+        }
+      })
+    })
     if (rowIndex < 0 || colIndex < 0) return
     if (colIndex === 4) setActiveRow(rowIndex + 1)
-    let boardCopy = [...board]
-    console.log('after', boardCopy[rowIndex][colIndex])
-    boardCopy[rowIndex][colIndex] = ({ value: letter, color: 'grey' })
-    console.log('before', boardCopy[rowIndex][colIndex])
-    setBoard(boardCopy)
+    // let boardCopy = [...board]
+    // boardCopy[rowIndex][colIndex] = ({ value: letter, color: 'grey' })
+    setBoard(newBoard)
   }
 
   // TODO:
@@ -143,7 +152,7 @@ export default function AppContextProvider(props: RFC) {
 
   React.useEffect(() => {
     if (!wordSelected || activeRow === 0 || gameStatus !== 'playing') return
-    console.log('Validation worked')
+    console.log('Validation exec')
     let boardCopy = [...board]
     const word = board[activeRow - 1].map(card => card?.value).join('')
     const boardWord: BoardCard[] = compareStringsValidation(word, wordSelected)
@@ -163,6 +172,7 @@ export default function AppContextProvider(props: RFC) {
   }, [activeRow])
 
   const restartGame = () => {
+    console.log('Game restart')
     if (wordSelected) {
       setBoard([
         [null, null, null, null, null],
@@ -177,6 +187,10 @@ export default function AppContextProvider(props: RFC) {
       selectWord(words, wordSelected)
     }
   }
+
+  React.useEffect(() => {
+    console.log({ board })
+  }, [board])
 
   const values: AppContextType = {
     restartGame,
