@@ -130,7 +130,9 @@ export default function AppContextProvider(props: RFC) {
     if (rowIndex < 0 || colIndex < 0) return
     if (colIndex === 4) setActiveRow(rowIndex + 1)
     let boardCopy = [...board]
+    console.log('after', boardCopy[rowIndex][colIndex])
     boardCopy[rowIndex][colIndex] = ({ value: letter, color: 'grey' })
+    console.log('before', boardCopy[rowIndex][colIndex])
     setBoard(boardCopy)
   }
 
@@ -141,6 +143,7 @@ export default function AppContextProvider(props: RFC) {
 
   React.useEffect(() => {
     if (!wordSelected || activeRow === 0 || gameStatus !== 'playing') return
+    console.log('Validation worked')
     let boardCopy = [...board]
     const word = board[activeRow - 1].map(card => card?.value).join('')
     const boardWord: BoardCard[] = compareStringsValidation(word, wordSelected)
